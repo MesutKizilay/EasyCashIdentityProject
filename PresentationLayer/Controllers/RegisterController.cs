@@ -23,7 +23,6 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Index(AppUserRegisterDto appUserRegisterDto)
         {
             if (ModelState.IsValid)
@@ -61,6 +60,8 @@ namespace PresentationLayer.Controllers
                     client.Authenticate("mesutkizilay3868@gmail.com", "eimkcwrfikuzjnwh");
                     client.Send(mimeMessage);
                     client.Disconnect(true);
+
+                    TempData["Mail"]=appUserRegisterDto.Email;
 
                     return RedirectToAction("Index", "ConfirmMail");
                 }
